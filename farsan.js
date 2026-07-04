@@ -71,7 +71,7 @@ const typed = new Typed('.text', {
     strings: [
         'Data Scientist...!',
         'AI and ML Engineer...!',
-        'Data Analyst...!'
+        // 'Data Analyst...!'
         
     ],
     typeSpeed: 100,

@@ -192,10 +192,8 @@ Explore my:
 ## 📸 Portfolio Preview
 
 <p align="center">
-  <img src="image/portfolio-preview.png" alt="Portfolio Preview" width="900"/>
+  <img src="image/example.png" alt="Portfolio Preview" width="900"/>
 </p>
-
-> Replace `image/portfolio-preview.png` with the actual screenshot filename in your repository.
 
 ---
 

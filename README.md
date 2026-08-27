@@ -1,4 +1,4 @@
-# 🚀 Farsan K — Personal Portfolio Website
+# Farsan K — Personal Portfolio Website
 
 <p align="center">
   <img src="image/Photo.png" alt="Farsan K Portfolio" width="900"/>
@@ -14,17 +14,17 @@
 
 <p align="center">
   <a href="https://farsan-k.github.io/Portfolio-Website/">
-    🌐 Live Portfolio
+    Live Portfolio
   </a>
   •
   <a href="https://github.com/Farsan-k">
-    💻 GitHub
+    GitHub
   </a>
 </p>
 
 ---
 
-## 👨‍💻 About
+## About
 
 Welcome to my personal portfolio website.
 
@@ -32,26 +32,26 @@ I am an **AI & Machine Learning Engineer** passionate about building intelligent
 
 This portfolio is designed to provide a complete overview of my:
 
-* 🤖 AI & Machine Learning skills
-* 📊 Data Analysis capabilities
-* 🧠 Machine Learning projects
-* 💻 Technical skills
-* 📁 Projects and practical work
-* 📄 Resume
-* 🔗 Professional profiles
-* 📬 Contact information
+* AI & Machine Learning skills
+* Data Analysis capabilities
+* Machine Learning projects
+* Technical skills
+* Projects and practical work
+* Resume
+* Professional profiles
+* Contact information
 
 The website serves as my digital presence and a central place to explore my technical journey.
 
 ---
 
-## ✨ Features
+## Features
 
-### 🎯 Professional Portfolio
+### Professional Portfolio
 
 A dedicated platform showcasing my technical background, skills, projects, and career journey.
 
-### 🧠 AI & Machine Learning Focus
+### AI & Machine Learning Focus
 
 Highlights my work and learning journey across:
 
@@ -63,7 +63,7 @@ Highlights my work and learning journey across:
 * Generative AI
 * Data Analysis
 
-### 📊 Technical Skills
+### Technical Skills
 
 The portfolio presents my experience with technologies such as:
 
@@ -78,44 +78,44 @@ The portfolio presents my experience with technologies such as:
 * Git
 * GitHub
 
-### 📁 Project Showcase
+### Project Showcase
 
 Projects are presented with relevant technologies, descriptions, and links so visitors can explore the implementation.
 
-### 📄 Resume
+### Resume
 
 Visitors can directly access my latest resume from the portfolio.
 
-### 📱 Responsive Design
+### Responsive Design
 
 The website is designed to provide a smooth experience across:
 
-* 💻 Desktop
-* 💻 Laptop
-* 📱 Mobile
-* 📟 Tablet
+* Desktop
+* Laptop
+* Mobile
+* Tablet
 
-### 🎨 Clean UI
+### Clean UI
 
 A simple and professional interface focused on readability, navigation, and showcasing technical work.
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
-| Technology              | Purpose                            |
-| ----------------------- | ---------------------------------- |
-| 🌐 HTML5                | Website structure                  |
-| 🎨 CSS3                 | Styling and responsive design      |
-| ⚡ JavaScript            | Interactivity and dynamic behavior |
-| 🖼️ HTML/CSS Components | Portfolio sections and layout      |
-| 🔧 Git                  | Version control                    |
-| 🐙 GitHub               | Source code & deployment           |
-| 🚀 GitHub Pages         | Website hosting                    |
+| Technology          | Purpose                            |
+| ------------------- | ---------------------------------- |
+| HTML5               | Website structure                  |
+| CSS3                | Styling and responsive design      |
+| JavaScript          | Interactivity and dynamic behavior |
+| HTML/CSS Components | Portfolio sections and layout      |
+| Git                 | Version control                    |
+| GitHub              | Source code & deployment           |
+| GitHub Pages        | Website hosting                    |
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 Portfolio-Website/
@@ -147,23 +147,23 @@ Portfolio-Website/
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 Want to run the portfolio locally?
 
-### 1️⃣ Clone the Repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/Farsan-k/Portfolio-Website.git
 ```
 
-### 2️⃣ Navigate to the Project
+### 2. Navigate to the Project
 
 ```bash
 cd Portfolio-Website
 ```
 
-### 3️⃣ Run the Website
+### 3. Run the Website
 
 Since this is a frontend portfolio website, you can simply open:
 
@@ -177,9 +177,9 @@ For a better development experience, you can also use the **Live Server** extens
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 
-### 🔗 Visit My Portfolio
+### Visit My Portfolio
 
 **https://farsan-k.github.io/Portfolio-Website/**
 
@@ -189,7 +189,7 @@ Explore my:
 
 ---
 
-## 📸 Portfolio Preview
+## Portfolio Preview
 
 <p align="center">
   <img src="image/example.png" alt="Portfolio Preview" width="900"/>
@@ -197,7 +197,7 @@ Explore my:
 
 ---
 
-## 🧠 Skills
+## Skills
 
 ### Programming & Data
 
@@ -255,28 +255,28 @@ GitHub Pages
 
 ---
 
-## 📌 Featured Projects
+## Featured Projects
 
 Some of my practical projects include work across:
 
-* 🤖 Machine Learning
-* 👁️ Computer Vision
-* 🛒 Market Basket Analysis
-* 📊 Data Analysis
-* 🧠 NLP
-* 🔍 Generative AI
-* 📚 Retrieval-Augmented Generation
-* 🧩 AI-powered applications
+* Machine Learning
+* Computer Vision
+* Market Basket Analysis
+* Data Analysis
+* NLP
+* Generative AI
+* Retrieval-Augmented Generation
+* AI-powered applications
 
 Visit my GitHub profile to explore the complete collection of projects.
 
-### 🔗 GitHub
+### GitHub
 
 **https://github.com/Farsan-k**
 
 ---
 
-## 🎯 Career Focus
+## Career Focus
 
 I am currently focused on developing my expertise in:
 
@@ -297,7 +297,7 @@ My goal is to build **real-world AI systems** that solve practical problems and 
 
 ---
 
-## 📈 Continuous Learning
+## Continuous Learning
 
 Technology is constantly evolving, so I continuously work on:
 
@@ -313,7 +313,7 @@ Technology is constantly evolving, so I continuously work on:
 
 ---
 
-## 🤝 Connect With Me
+## Connect With Me
 
 I am always open to connecting with developers, recruiters, AI/ML professionals, and people working on interesting technology projects.
 
@@ -331,21 +331,21 @@ I am always open to connecting with developers, recruiters, AI/ML professionals,
 
 ---
 
-## ⭐ Support
+## Support
 
-If you find this portfolio useful or interesting, consider giving the repository a ⭐.
+If you find this portfolio useful or interesting, consider giving the repository a star.
 
 It helps support the project and motivates me to keep building and learning.
 
 ---
 
-## 📜 License
+## License
 
 This project is intended for personal portfolio and educational purposes.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 ### Farsan K
 
@@ -357,6 +357,6 @@ Passionate about:
 
 <p align="center">
 
-### 🚀 Keep Learning. Keep Building. Keep Improving.
+### Keep Learning. Keep Building. Keep Improving.
 
 </p>

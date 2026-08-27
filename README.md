@@ -1,7 +1,7 @@
 # 🚀 Farsan K — Personal Portfolio Website
 
 <p align="center">
-  <img src="image/your-image.png" alt="Farsan K Portfolio" width="900"/>
+  <img src="image/Photo.png" alt="Farsan K Portfolio" width="900"/>
 </p>
 
 <h3 align="center">

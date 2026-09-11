@@ -1,389 +1,696 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farsan K</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Farsan K</title>
+<meta name="description" content="AI/ML Engineer specializing in Machine Learning, Deep Learning, NLP, LLMs, Computer Vision, and MLOps.">
+<link rel="canonical" href="https://farsan-k.github.io/Portfolio-Website/">
+<!-- Favicon -->
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23060907'/%3E%3Ctext x='7' y='46' font-family='Georgia,serif' font-size='38' fill='%23E9F3EA'%3EF%3C/text%3E%3Ctext x='32' y='46' font-family='Georgia,serif' font-size='38' fill='%2343D67D'%3EK%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #1A1A1A;
+  --bg-alt: #202020;
+  --surface: #242424;
+  --surface-2: #2A2A2A;
 
+  --line: #3A3A3A;
+  --line-soft: #303030;
 
-    <link rel="stylesheet" href="farsan.css">
+  --ink: #F5F5F3;
+  --ink-soft: #C8C8C4;
+  --ink-dim: #8F8F8A;
 
+  --blue: #F5F5F3;
+  --blue-soft: #BDBDB8;
+  --blue-glow: rgba(245, 245, 243, 0.10);
+  --blue-glow-strong: rgba(245, 245, 243, 0.20);
+}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+    .reveal{opacity:1 !important; transform:none !important;}
+  }
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    width:100%;
+    max-width:100vw;
+  }
+  ::selection{background:var(--blue); color:#080B14;}
+  a{color:inherit;}
+  img{max-width:100%;}
+  :focus-visible{outline:2px solid var(--blue); outline-offset:3px; border-radius:2px;}
+  .wrap{width:100%; max-width:800px; margin:0 auto; padding:0 clamp(18px,4vw,28px);}
+  .rule{border:none; border-top:1px solid var(--line);}
 
+  /* faint drifting field, whole page */
+  .field{
+    position:fixed; inset:0; z-index:-1;
+    background:
+      radial-gradient(ellipse 900px 500px at 12% -8%, var(--blue-glow), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 100% 30%, rgba(67,214,125,0.08), transparent 55%);
+  }
 
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "mgRzqI54qltZ2AvkV",
-      });
-   })();
-</script>
-<link rel="icon" type="image/png" sizes="32x32" href="image/favicon.png">
+  /* Nav */
+  nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(8,11,20,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  nav .wrap{display:flex; align-items:center; justify-content:space-between; padding:16px clamp(18px,4vw,28px);}
+  nav .mark{font-family:'Fraunces',serif; font-weight:600; font-size:1.05rem; letter-spacing:0.01em; white-space:nowrap;}
+  nav .mark span{color:var(--blue);}
+  nav ul{list-style:none; display:flex; gap:clamp(14px,2.5vw,28px);}
+  nav a{
+    text-decoration:none; font-size:0.87rem; color:var(--ink-soft);
+    position:relative; padding-bottom:3px; white-space:nowrap;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; right:0; bottom:0; height:1px;
+    background:var(--blue); transform:scaleX(0); transform-origin:right;
+    transition:transform .25s ease;
+  }
+  nav a:hover{color:var(--ink);}
+  nav a:hover::after{transform:scaleX(1); transform-origin:left;}
+  .nav-toggle{display:none; background:none; border:1px solid var(--line); color:var(--ink); border-radius:6px; padding:7px 10px; font-size:0.9rem; flex-shrink:0;}
+
+  /* scroll progress bar */
+  .scroll-progress{
+    position:fixed; top:0; left:0; height:2px; width:0%;
+    background:var(--blue); z-index:30;
+    box-shadow:0 0 8px var(--blue-glow-strong);
+    transition:width .08s linear;
+  }
+
+  /* Hero */
+  header.hero{
+    position:relative;
+    padding:clamp(48px,8vw,76px) 0 clamp(40px,7vw,64px);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 220px;
+    gap:clamp(24px,5vw,40px);
+    align-items:center;
+  }
+  .hero-copy{opacity:0; animation:rise .8s ease forwards;}
+  .hero-copy h1{
+    font-family:'Fraunces',serif; font-weight:500;
+    font-size:clamp(1.9rem, 5.6vw, 3.1rem);
+    line-height:1.1; letter-spacing:-0.01em; max-width:13ch;
+  }
+  .hero-copy .role{
+    margin-top:14px; font-size:clamp(0.92rem,2vw,1.02rem); color:var(--blue); font-weight:500;
+  }
+  .hero-copy .summary{margin-top:20px; max-width:52ch; font-size:1rem; color:var(--ink-soft);}
+  .hero-links{margin-top:30px; display:flex; flex-wrap:wrap; gap:9px 20px;}
+  .hero-links a, .hero-links span{
+    font-family:'JetBrains Mono',monospace; font-size:0.8rem; color:var(--ink-soft);
+    text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px;
+    transition:color .2s ease, border-color .2s ease;
+  }
+  .hero-links a:hover{color:var(--blue); border-color:var(--blue);}
+
+  .hero-photo{
+    opacity:0; animation:rise .8s ease .15s forwards;
+    position:relative; width:200px; height:200px; justify-self:center;
+    max-width:100%;
+  }
+  .hero-photo .ring{
+    position:absolute; inset:-10px; border-radius:50%;
+    border:1px solid var(--line);
+  }
+  .hero-photo .pulse{
+    position:absolute; inset:-10px; border-radius:50%;
+    border:1px solid var(--blue-glow-strong);
+    animation:pulse 3.2s ease-out infinite;
+  }
+  .hero-photo img{
+    width:200px; height:200px; border-radius:50%; object-fit:cover; display:block;
+    box-shadow:0 0 0 1px var(--line), 0 20px 50px -18px rgba(67,214,125,0.45);
+  }
+  @keyframes pulse{
+    0%{transform:scale(1); opacity:.7;}
+    100%{transform:scale(1.18); opacity:0;}
+  }
+  @keyframes rise{
+    from{opacity:0; transform:translateY(14px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  /* embedding-space node graph, sits behind hero text */
+  .node-field{
+    position:absolute; top:0; right:-8%; width:60%; height:100%;
+    z-index:-1; opacity:0.55; pointer-events:none;
+  }
+  .node-field circle{fill:var(--blue);}
+  .node-field line{stroke:var(--blue-soft); stroke-width:1;}
+  .node-field .n{animation:drift 7s ease-in-out infinite;}
+  .node-field .n1{animation-delay:0s;} .node-field .n2{animation-delay:.6s;}
+  .node-field .n3{animation-delay:1.2s;} .node-field .n4{animation-delay:1.8s;}
+  .node-field .n5{animation-delay:2.4s;} .node-field .n6{animation-delay:3s;}
+  @keyframes drift{
+    0%,100%{transform:translate(0,0);}
+    50%{transform:translate(-4px,6px);}
+  }
+
+  /* Reveal-on-scroll: one quiet, consistent moment as each section enters view */
+  .reveal{
+    opacity:0;
+    transform:translateY(16px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* staggered child reveal within sections — cards/rows/chips settle in one after another */
+  .stagger-child{
+    opacity:0;
+    transform:translateY(14px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .stagger-child.is-visible{
+    opacity:1;
+    transform:translateY(0);
+  }
+
+  /* Tighten up before we hit phone width, so laptops in a half-width
+     or non-maximized window never get a cramped hero or nav */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .hero-photo{width:120px; height:120px; justify-self:start;}
+    .hero-photo img{width:120px; height:120px;}
+    .node-field{opacity:0.35; width:46%;}
+  }
+
+  @media (max-width:760px){
+    nav ul{gap:16px;}
+  }
+
+  @media (max-width:640px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .hero-photo{width:112px; height:112px; justify-self:start;}
+    .hero-photo img{width:112px; height:112px;}
+    .node-field{display:none;}
+  }
+
+  section{padding:clamp(38px,7vw,52px) 0;}
+  section h2{
+    font-family:'Fraunces',serif; font-weight:500; font-size:clamp(1.2rem,3vw,1.4rem); margin-bottom:26px;
+  }
+
+  #about p{max-width:62ch; color:var(--ink-soft);}
+  #about p + p{margin-top:14px;}
+
+  /* Experience */
+  .exp-row{display:grid; grid-template-columns:190px 1fr; gap:24px;}
+  .exp-meta .company{font-weight:600;}
+  .exp-meta .role{color:var(--blue); font-size:0.93rem; margin-top:2px;}
+  .exp-meta .dates{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--ink-dim); margin-top:8px;}
+  .exp-body ul{padding-left:18px; color:var(--ink-soft);}
+  .exp-body li + li{margin-top:10px;}
+  @media (max-width:640px){.exp-row{grid-template-columns:1fr;}}
+
+  /* Projects */
+  .project{
+    padding:24px 22px;
+    border:1px solid var(--line-soft);
+    border-radius:10px;
+    background:var(--surface);
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .project + .project{margin-top:14px;}
+  .project:hover{
+    border-color:var(--blue-soft);
+    transform:translateY(-3px);
+    box-shadow:0 14px 34px -20px rgba(67,214,125,0.5);
+  }
+  .project-head{display:flex; align-items:baseline; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .project-head h3{font-family:'Fraunces',serif; font-weight:500; font-size:1.1rem;}
+  .status{
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem;
+    padding:3px 9px; border-radius:20px; white-space:nowrap; border:1px solid var(--line);
+  }
+  .status.progress{background:rgba(255,175,90,0.08); color:#E8A85C; border-color:rgba(232,168,92,0.3);}
+  .status.live{background:var(--blue-glow); color:var(--blue); border-color:var(--blue-soft);}
+  .status.done{background:var(--surface-2); color:var(--ink-soft);}
+  .project-desc{margin-top:10px; color:var(--ink-soft); max-width:64ch; font-size:0.95rem;}
+  .project-tags{margin-top:14px; display:flex; flex-wrap:wrap; gap:7px;}
+  .project-tags span{
+    font-family:'JetBrains Mono',monospace; font-size:0.7rem; color:var(--ink-dim);
+    border:1px solid var(--line); padding:3px 8px; border-radius:4px;
+  }
+  .project-links{margin-top:16px; display:flex; gap:20px; flex-wrap:wrap;}
+  .project-links a{
+    font-size:0.85rem; color:var(--blue); text-decoration:none;
+    display:inline-flex; align-items:center; gap:6px;
+    border-bottom:1px solid transparent; padding-bottom:1px;
+    transition:border-color .2s ease, gap .2s ease;
+  }
+  .project-links a:hover{border-color:var(--blue);}
+  .project-links a svg{width:13px; height:13px; transition:transform .2s ease;}
+  .project-links a:hover svg{transform:translate(2px,-2px);}
+  .project-links .pending{
+    font-size:0.8rem; color:var(--ink-dim); font-family:'JetBrains Mono',monospace;
+  }
+
+  /* Skills */
+  .skill-group{margin-bottom:22px;}
+  .skill-group h4{font-size:0.78rem; font-weight:600; color:var(--ink-soft); margin-bottom:10px;}
+  .skill-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .skill-chips span{
+    font-family:'JetBrains Mono',monospace; font-size:0.74rem;
+    padding:5px 10px; background:var(--surface); border:1px solid var(--line-soft);
+    border-radius:4px; color:var(--ink-soft);
+    transition:border-color .2s ease, color .2s ease, transform .2s ease;
+  }
+  .skill-chips span:hover{border-color:var(--blue-soft); color:var(--ink); transform:translateY(-2px);}
+
+  /* Education */
+  #education .edu-row{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;}
+  #education .edu-row .school{font-weight:600;}
+  #education .edu-row .years{font-family:'JetBrains Mono',monospace; font-size:0.76rem; color:var(--ink-dim);}
+
+  /* Footer */
+  footer{padding:clamp(44px,8vw,60px) 0 clamp(56px,10vw,76px);}
+  footer h2{font-family:'Fraunces',serif; font-weight:500; font-size:clamp(1.35rem,4vw,1.6rem); max-width:14ch;}
+  footer .contact-list{margin-top:24px; display:flex; flex-direction:column; gap:10px;}
+  footer .contact-list a{
+    font-size:1rem; text-decoration:none; width:fit-content;
+    border-bottom:1px solid var(--line); padding-bottom:2px;
+    transition:border-color .2s ease, color .2s ease;
+  }
+  footer .contact-list a:hover{border-color:var(--blue); color:var(--blue);}
+  footer .fine{margin-top:44px; font-size:0.76rem; color:var(--ink-dim); font-family:'JetBrains Mono',monospace;}
+
+  @media (max-width:640px){
+    nav ul{
+      position:fixed; top:57px; left:0; right:0;
+      flex-direction:column; gap:0; background:var(--bg-alt);
+      border-bottom:1px solid var(--line-soft);
+      max-height:0; overflow:hidden; transition:max-height .25s ease;
+    }
+    nav ul.open{max-height:260px;}
+    nav ul li{border-top:1px solid var(--line-soft);}
+    nav ul a{display:block; padding:14px 20px;}
+    nav ul a::after{display:none;}
+    .nav-toggle{display:block;}
+  }
+
+  @media (max-width:380px){
+    .hero-copy h1{max-width:none;}
+    .hero-links{gap:8px 14px;}
+  }
+</style>
 </head>
 <body>
 
-    <header class="header">
-        <a href="#" class="logo"><b style="color: #00BFFF;">F</b>arsan K</a>
-        <i class='bx bx-menu' id="menu-icon" ></i>
-        <nav class="NavOne">
-            <a href="#HomePage" class="active">Home</a>
-            <a href="#AboutPage">About</a>
-            <a href="#SkillPage">Skill</a>
-            <a href="#ProjectPage">Project</a>
-            <a href="#ContactPage">Contact</a>
-        </nav>
-    </header>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="field"></div>
 
+<nav>
+  <div class="wrap">
+    <span class="mark">Farsan <span>K</span></span>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">Menu</button>
+    <ul id="navMenu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
 
+<header class="hero">
+  <svg class="node-field" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <line x1="60" y1="90" x2="180" y2="60" opacity="0.35"/>
+    <line x1="180" y1="60" x2="300" y2="140" opacity="0.35"/>
+    <line x1="180" y1="60" x2="140" y2="200" opacity="0.3"/>
+    <line x1="140" y1="200" x2="260" y2="260" opacity="0.3"/>
+    <line x1="260" y1="260" x2="330" y2="180" opacity="0.3"/>
+    <line x1="140" y1="200" x2="70" y2="300" opacity="0.25"/>
+    <circle class="n n1" cx="60" cy="90" r="4"/>
+    <circle class="n n2" cx="180" cy="60" r="5"/>
+    <circle class="n n3" cx="300" cy="140" r="3.5"/>
+    <circle class="n n4" cx="140" cy="200" r="4.5"/>
+    <circle class="n n5" cx="260" cy="260" r="4"/>
+    <circle class="n n6" cx="330" cy="180" r="3"/>
+    <circle class="n n2" cx="70" cy="300" r="3.5"/>
+  </svg>
 
-
-
-    <section class="HomePage" id="HomePage">
-        <div class="HomePage1">
-            <h3>It's Me</h3>
-            <h1>Farsan K</h1>
-            <h3>I'm a <span class="text"></span></h3>
-            <p>I'm Farsan K, an aspiring AI & Machine Learning Engineer and Data Scientist passionate about transforming data into intelligent solutions. I enjoy building machine learning models, analyzing complex datasets, and developing AI-powered applications that solve real-world problems. With a strong foundation in Python, SQL, Statistics, Data Analysis, and Machine Learning, I'm continuously expanding my expertise in Deep Learning, Computer Vision, NLP, and MLOps while creating impactful projects and learning modern AI technologies.</p>
-        <div class="MediaIcon">
-            <a href="https://github.com/Farsan-k" target="_blank"><i class='bx bxl-github'></i></a>
-            <a href="https://wa.me/918089096110" target="_blank"><i class='bx bxl-whatsapp' ></i></a>
-            <!-- <a href="https://instagram.com/farsan_ak" target="_blank"><i class='bx bxl-instagram' ></i></a> -->
-            <a href="https://www.linkedin.com/in/farsan-k-a124a228a/" target="_blank"><i class='bx bxl-linkedin' ></i></a>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1>Systems that learn from data, shipped to production.</h1>
+        <p class="role">AI/ML Engineer — Vadakara, Calicut, Kerala</p>
+        <p class="summary">I design, train, and deploy machine learning, deep learning, NLP, and LLM systems — from RAG pipelines and multi-agent architectures to real-time inference services running on FastAPI and Docker. My focus sits where models meet production: MLOps, computer vision, and systems built to hold up under real traffic.</p>
+        <div class="hero-links">
+          <a href="mailto:farsanfarsank41@gmail.com">farsanfarsank41@gmail.com</a>
+          <span>+91 8089096110</span>
+          <a href="https://github.com/Farsan-k" target="_blank" rel="noopener">github.com/Farsan-k</a>
+          <a href="https://www.linkedin.com/in/farsank/" target="_blank" rel="noopener">linkedin.com/in/farsank</a>
         </div>
-        <a href="Farsan k_data _analyst.pdf" class="btn" download>Download CV</a>
-        </div>
-        <div class="img1">
-            <img src="image/img16.png">
-        </div>
-    </section>
-
-
-
-
-
-    <section class="AboutPage" id="AboutPage">
-        <div class="img2">
-            <img src="image/img16.png">
-        </div>
-        <div class="About">
-            <h2 class="Head">About<span>Me</span></h2>
-            <h3>Data Science</h3>
-            <p>I am an AI & Machine Learning Engineer passionate about building intelligent, production-oriented solutions using Machine Learning, Deep Learning, Generative AI, and Computer Vision. I enjoy transforming real-world problems into practical AI solutions through data, experimentation, and scalable engineering. <br><br>
+      </div>
+      <div class="hero-photo">
+        <div class="ring"></div>
+        <div class="pulse"></div>
+        <img src="image.png" alt="Portrait of Farsan K">
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="about" class="reveal">
+    <h2>About</h2>
+    <p>I'm an AI/ML Engineer currently building production ML systems at Bridgeon Solutions, with a Bachelor's in Computer Applications from the University of Calicut. My work spans the full lifecycle — data preprocessing and feature engineering, model development, and deployment — across NLP, computer vision, and LLM-based applications.</p>
+    <p>Lately I've been deep in retrieval-augmented generation and multi-agent workflows: hybrid search, reranking, and coordinating agents with LangChain and LangGraph to make AI outputs more reliable. On the deployment side, I work with FastAPI, PostgreSQL, Redis, Docker, and CI/CD to keep inference services fast and stable in production.</p>
+  </section>
+
+  <hr class="rule">
+
+  <section id="experience" class="reveal">
+    <h2>Experience</h2>
+    <div class="exp-row">
+      <div class="exp-meta">
+        <div class="company">Bridgeon Solutions</div>
+        <div class="role">AI/ML Engineer, Internship</div>
+        <div class="dates">Jun 2025 — Present</div>
+      </div>
+      <div class="exp-body">
+        <ul>
+          <li>Build AI/ML solutions in Python for data preprocessing, feature engineering, and model development to automate manual analysis and speed up business decisions.</li>
+          <li>Develop and deploy NLP, computer vision, and LLM-based applications using deep learning, embeddings, and vector databases for real-world use cases.</li>
+          <li>Design a hybrid-search RAG pipeline with document chunking, metadata filtering, and cross-encoder reranking to improve retrieval quality at scale.</li>
+          <li>Build computer vision workflows for image preprocessing, object detection, and feature extraction on real-world datasets.</li>
+          <li>Develop multi-agent AI workflows with LangChain and LangGraph, coordinating retrieval, reasoning, and validation agents to improve output reliability.</li>
+          <li>Deploy AI/ML applications to production with FastAPI, PostgreSQL, Redis, Docker, and CI/CD, building low-latency real-time inference services and supporting ongoing monitoring.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="projects" class="reveal">
+    <h2>Projects</h2>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>Real-Time Financial Intelligence</h3>
+        <span class="status progress">In progress</span>
+      </div>
+      <p class="project-desc">A real-time financial RAG assistant combining hybrid BM25 + vector retrieval, embeddings, reranking, and freshness-aware responses through multi-agent workflows. Incremental ingestion uses content-hash indexing so the data stays current without full reprocessing, backed by SQL agents, evaluation, and caching.</p>
+      <div class="project-tags">
+        <span>LLM</span><span>RAG</span><span>LangChain</span><span>LangGraph</span><span>Qdrant</span><span>PostgreSQL</span><span>Redis</span><span>FastAPI</span><span>MCP</span>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>AI-Based Human Fall Detection</h3>
+        <span class="status live">Live · APK</span>
+      </div>
+      <p class="project-desc">Contributed the AI/ML system as part of a group project — YOLOv7 pose estimation and OpenCV processing live camera frames to detect human falls for safety monitoring. Integrated the inference pipeline with a Django and MariaDB backend, added automated caregiver alerts, and led AWS EC2 deployment with systemd and Nginx.</p>
+      <div class="project-tags">
+        <span>YOLOv7</span><span>OpenCV</span><span>Pose Estimation</span><span>Django</span><span>MariaDB</span><span>AWS EC2</span><span>Flutter</span>
+      </div>
+      <div class="project-links">
+        <a href="http://16.192.70.148/myapp/login/" target="_blank" rel="noopener">Live App<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <a href="https://drive.google.com/drive/folders/1FQQaVBjrZ9STrdMSN5p1UqB679c69I1x" target="_blank" rel="noopener">APK / Demo<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>License Plate Detection &amp; Recognition</h3>
+        <span class="status done">GitHub · API</span>
+      </div>
+      <p class="project-desc">A real-time license plate detection system using YOLO for localization and OpenCV for preprocessing — noise reduction, edge detection, perspective correction — to improve OCR accuracy. Containerized with Docker and deployed on AWS, later migrated to Render, serving predictions through a FastAPI backend.</p>
+      <div class="project-tags">
+        <span>YOLO</span><span>OpenCV</span><span>FastAPI</span><span>Docker</span><span>AWS</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/license-plate-detection" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <a href="https://plate-api-ch17.onrender.com/docs" target="_blank" rel="noopener">API<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>AI-Powered Mobile Addiction Risk Prediction</h3>
+        <span class="status done">GitHub · API</span>
+      </div>
+      <p class="project-desc">An end-to-end ML system predicting daily screen time and classifying mobile addiction risk (low, medium, high) from usage data, comparing XGBoost, LightGBM, CatBoost, and Random Forest. Experiments tracked with MLflow, predictions served through a FastAPI REST API, with CI/CD through GitHub Actions.</p>
+      <div class="project-tags">
+        <span>Scikit-Learn</span><span>FastAPI</span><span>MLflow</span><span>Docker</span><span>GitHub Actions</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/AI-Powered-Mobile-Addiction-Risk-Prediction-System" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <a href="https://ai-mobile-addiction.onrender.com/docs" target="_blank" rel="noopener">API<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>Predictive Maintenance System</h3>
+        <span class="status done">GitHub · API</span>
+      </div>
+      <p class="project-desc">Detects abnormal machine behavior from industrial sensor data using unsupervised models — Isolation Forest and DBSCAN — to help reduce downtime and maintenance costs. The anomaly detection pipeline is served through a Dockerized FastAPI REST API with CI/CD via GitHub Actions.</p>
+      <div class="project-tags">
+        <span>Scikit-Learn</span><span>FastAPI</span><span>Docker</span><span>CI/CD</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/Predictive-Maintenance" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+        <a href="https://predictive-maintenance-fvk5.onrender.com/docs" target="_blank" rel="noopener">API<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>Cinema Audience Forecasting</h3>
+        <span class="status done">GitHub</span>
+      </div>
+      <p class="project-desc">An end-to-end ML system forecasting cinema audience attendance from historical data, engineering features like genre, budget, marketing spend, release timing, and screen count, then comparing regression models for the best fit. Deployed through a FastAPI REST API for real-time predictions.</p>
+      <div class="project-tags">
+        <span>Scikit-Learn</span><span>FastAPI</span><span>Pandas</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/Cinema-Audience-Forecasting" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>Market Basket Analysis</h3>
+        <span class="status done">GitHub</span>
+      </div>
+      <p class="project-desc">Discovers which products retail customers buy together using the Apriori algorithm and metrics like support, confidence, and lift. A full pipeline from data cleaning through frequent-itemset mining to visualization, aimed at cross-selling and store-layout decisions.</p>
+      <div class="project-tags">
+        <span>Pandas</span><span>NumPy</span><span>Scikit-Learn</span><span>MLxtend</span><span>Matplotlib</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/Market_Basket_Analysis" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>Job Market Exploratory Data Analysis</h3>
+        <span class="status done">GitHub</span>
+      </div>
+      <p class="project-desc">A structured EDA of real-world recruitment data, cleaning and analyzing salary, experience, industry, and location trends. Covers univariate, bivariate, and correlation analysis to surface insights for job seekers, recruiters, and HR teams.</p>
+      <div class="project-tags">
+        <span>Pandas</span><span>NumPy</span><span>Matplotlib</span><span>Seaborn</span><span>Jupyter</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/Job-Market-EDA" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+    <div class="project stagger-child">
+      <div class="project-head">
+        <h3>UPI Transaction Analysis Dashboard</h3>
+        <span class="status done">GitHub</span>
+      </div>
+      <p class="project-desc">An interactive Power BI dashboard analyzing digital payment transactions — volume, success rate, bank performance, and payment-method trends — built with a modeled data layer and DAX measures, backed by BRD/FRD documentation.</p>
+      <div class="project-tags">
+        <span>Power BI</span><span>Power Query</span><span>DAX</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/Farsan-k/UPI_Transaction_Analysis" target="_blank" rel="noopener">GitHub<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+      </div>
+    </div>
+
+  </section>
+
+  <hr class="rule">
+
+  <section id="skills" class="reveal">
+    <h2>Skills</h2>
+
+    <div class="skill-group">
+      <h4>Programming</h4>
+      <div class="skill-chips"><span>Python</span><span>SQL</span></div>
+    </div>
+
+    <div class="skill-group">
+      <h4>ML Libraries</h4>
+      <div class="skill-chips">
+        <span>Pandas</span><span>NumPy</span><span>SciPy</span><span>Matplotlib</span><span>Seaborn</span><span>Scikit-learn</span><span>TensorFlow</span><span>PyTorch</span><span>TorchScript</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Deep Learning &amp; Computer Vision</h4>
+      <div class="skill-chips">
+        <span>ANN</span><span>CNN</span><span>Object Detection</span><span>Image Classification</span><span>YOLO</span><span>OpenCV</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>GenAI &amp; NLP</h4>
+      <div class="skill-chips">
+        <span>NLP</span><span>LLMs (GPT, BERT)</span><span>Hugging Face</span><span>RAG (LangChain, ChromaDB)</span><span>Multi-Agent AI</span><span>Embeddings</span><span>Hybrid Search</span><span>Reranking</span><span>LoRA/QLoRA</span><span>Multimodal AI</span><span>Ollama</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Vector Databases &amp; Storage</h4>
+      <div class="skill-chips">
+        <span>Qdrant</span><span>ChromaDB</span><span>Faiss</span><span>PostgreSQL</span><span>Redis</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Backend &amp; APIs</h4>
+      <div class="skill-chips">
+        <span>FastAPI</span><span>Flask</span><span>REST APIs</span><span>MCP</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>MLOps &amp; Deployment</h4>
+      <div class="skill-chips">
+        <span>Docker</span><span>Docker Compose</span><span>GitHub Actions</span><span>MLflow</span><span>DVC</span><span>EvidentlyAI</span><span>AWS</span><span>EC2</span><span>ECR</span><span>Render</span>
+      </div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Data Collection &amp; Tools</h4>
+      <div class="skill-chips">
+        <span>Requests</span><span>BeautifulSoup</span><span>Selenium</span><span>Power BI</span><span>Jupyter Notebook</span><span>VS Code</span><span>PyCharm</span><span>Google Colab</span><span>Kaggle</span>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <section id="education" class="reveal">
+    <h2>Education</h2>
+    <div class="edu-row">
+      <span class="school">Bachelor of Computer Applications, University of Calicut</span>
+      <span class="years">2022 — 2025</span>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact" class="reveal">
+  <div class="wrap">
+    <div class="contact-list">
+      <a href="mailto:farsanfarsank41@gmail.com">farsanfarsank41@gmail.com</a>
+      <a href="tel:+918089096110">+91 8089096110</a>
+      <a href="https://github.com/Farsan-k" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/farsank/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <p class="fine">Vadakara, Calicut, Kerala</p>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('navToggle');
+  var menu = document.getElementById('navMenu');
+  toggle.addEventListener('click', function(){
+    var open = menu.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', open);
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      menu.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Scroll progress bar across the top of the page
+  var progressBar = document.getElementById('scrollProgress');
+  function updateProgress(){
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+  }
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Quiet, single-purpose scroll reveal for each section — skipped
+  // entirely for users who've asked for reduced motion.
+  var prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+    var revealTargets = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealTargets.forEach(function(el){ observer.observe(el); });
+
+    // Staggered reveal for project cards — each one settles in slightly
+    // after the previous as the Projects section scrolls into view.
+    var staggerGroups = {};
+    document.querySelectorAll('.stagger-child').forEach(function(el){
+      var parent = el.closest('section');
+      var key = parent ? parent.id : 'default';
+      if (!staggerGroups[key]) staggerGroups[key] = [];
+      staggerGroups[key].push(el);
+    });
+    var staggerObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          var group = staggerGroups[entry.target.closest('section').id] || [entry.target];
+          var index = group.indexOf(entry.target);
+          entry.target.style.transitionDelay = (Math.max(index, 0) * 70) + 'ms';
+          entry.target.classList.add('is-visible');
+          staggerObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.stagger-child').forEach(function(el){ staggerObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal, .stagger-child').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+</script>
 
-My technical focus includes Python, SQL, Machine Learning, Deep Learning, NLP, Computer Vision, LLMs, RAG, AI Agents, PyTorch, TensorFlow, Scikit-learn, Hugging Face, LangChain, FastAPI, Docker, and MLOps. I have a strong interest in developing end-to-end AI applications, from data preprocessing and model development to API integration and deployment.<br><br>
-
-I believe the best way to learn AI is by building. Through hands-on projects, I continuously strengthen my understanding of ML algorithms, deep learning architectures, computer vision, LLM applications, retrieval-augmented generation, and AI agent workflows while focusing on solving practical problems.<br><br>
-
-I am actively looking for opportunities as an AI Engineer, Machine Learning Engineer, AI/ML Engineer, or Computer Vision Engineer where I can apply my skills, work on meaningful AI products, collaborate with talented teams, and continue growing as an AI professional.<br><br>
-
-        <a href="#" class="btn">Read More</a>
-        </div>
-    </section>
-    
-    
-
-
-    <section class="SkillPage" id="SkillPage">
-        <h2 class="Head">My <span>Skill</span></h2>
-        <div class="Skill">
-            <div class="SkillBox">
-                <h3>Python</h3>
-                <p>Strong foundation in Python, including object-oriented programming, functions, file handling, exception handling, modules, packages, virtual environments, comprehensions, iterators, generators, decorators, and basic multithreading and multiprocessing, enabling efficient, scalable, maintainable, and well-structured software development solutions.</p>
-            </div>
-
-            <div class="SkillBox">
-                <h3>Mathematics</h3>
-                <p>Strong foundation in mathematics, including linear algebra, vectors, matrices, matrix multiplication, eigenvalues, eigenvectors, dot product, transpose, statistics, probability, probability distributions, sampling, confidence intervals, hypothesis testing, Gradient Descent, covariance, correlation, and statistical data analysis.</p>
-            </div>
-
-            <div class="SkillBox">
-                <h3>PostgreSQL</h3>
-                <p>Strong foundation in PostgreSQL, with experience solving 100+ SQL problems covering SELECT, WHERE, GROUP BY, HAVING, ORDER BY, JOINs, UNION, CASE, subqueries, CTEs, window functions, ranking, date functions, and efficient database query optimization.</p>
-            </div>
-
-            <div class="SkillBox">
-                <h3>Data Analysis</h3>
-                <p>Strong foundation in data analysis using NumPy, Pandas, Matplotlib, and Seaborn, with expertise in data cleaning, handling missing values, outlier detection, feature engineering, exploratory data analysis, and creating insightful visualizations for informed decision-making.</p>
-            </div>
-
-                      <div class="SkillBox">
-                <h3>Regression</h3>
-                <p>Strong understanding of regression techniques, including Linear Regression, Ridge Regression, and Lasso Regression, with knowledge of model assumptions, regularization, feature selection, performance evaluation, and building accurate predictive models for real-world machine learning applications.</p>
-            </div>
-
-                      <div class="SkillBox">
-                <h3>Classification</h3>
-                <p>Strong understanding of classification algorithms, including Logistic Regression, KNN, Decision Tree, Random Forest, SVM, Naive Bayes, Gradient Boosting, XGBoost, LightGBM, and CatBoost, with expertise in model evaluation, feature selection, and predictive classification tasks.</p>
-            </div>
-
-                      <div class="SkillBox">
-                <h3>Clustering</h3>
-                <p>Strong understanding of clustering techniques, including K-Means, DBSCAN, and Hierarchical Clustering, with expertise in unsupervised learning, cluster evaluation, pattern discovery, data segmentation, distance metrics, and extracting meaningful insights from unlabeled datasets for analysis.</p>
-            </div>
-
-                      <div class="SkillBox">
-                <h3>Dimensionality Reduction</h3>
-                <p>Strong understanding of dimensionality reduction techniques, including Principal Component Analysis (PCA), with expertise in feature extraction, variance preservation, data compression, noise reduction, visualization, preprocessing, and improving machine learning model performance on high-dimensional datasets.</p>
-            </div>
-
-                      <div class="SkillBox">
-                <h3>Model Evaluation</h3>
-                <p>Strong understanding of model evaluation techniques, including regression metrics (MAE, MSE, RMSE, R² Score) and classification metrics (Accuracy, Precision, Recall, F1 Score, ROC-AUC, Confusion Matrix) for assessing machine learning model performance effectively.</p>
-            </div>
-
-                        <div class="SkillBox">
-                <h3>Feature Engineering</h3>
-                <p>Strong foundation in feature engineering, including encoding, scaling, normalization, standardization, missing value imputation, outlier handling, feature selection, and feature extraction, enabling improved data quality, enhanced model performance, and robust machine learning pipelines.</p>
-            </div>
-
-                        <div class="SkillBox">
-                <h3>MLOps</h3>
-                <p>Strong foundation in MLOps, including Git, GitHub, Docker, FastAPI, MLflow, DVC, model deployment, CI/CD fundamentals, and monitoring basics, enabling efficient version control, reproducible workflows, scalable deployment, and reliable maintenance of machine learning systems.</p>
-             </div>
-
-
-                        <div class="SkillBox">
-                <h3>Version Control</h3>
-                <p>Strong foundation in version control using Git and GitHub, with experience in branching, merging, pull requests, repository management, collaboration workflows, conflict resolution, and maintaining organized, efficient, and traceable software development processes.</p>
-             </div>
-
-                        <div class="SkillBox">
-                <h3>Scikit-learn</h3>
-                <p>Strong foundation in Scikit-learn, including data preprocessing, model training, feature engineering, and performance evaluation. Experienced in building machine learning models, implementing classification and regression algorithms, optimizing model accuracy, and applying scalable solutions for predictive analytics and data-driven applications.</p>
-             </div>
-
-                        <div class="SkillBox">
-                <h3>probability</h3>
-                <p>Strong foundation in probability theory, including random variables, probability distributions, conditional probability, and Bayesian concepts. Experienced in applying probabilistic methods to analyze uncertainty, model real-world scenarios, evaluate outcomes, and support data-driven decision-making in statistical and machine learning applications.</p>
-             </div>
-
-                       <div class="SkillBox">
-                <h3>DVC</h3>
-                <p>Strong foundation in DVC, including data versioning, pipeline management, experiment tracking, and reproducible machine learning workflows. Experienced in managing datasets efficiently, automating ML pipelines, tracking model changes, and maintaining scalable workflows for collaborative and production-ready machine learning projects.</p>
-                 </div> 
-
-
-
-
-                                    <!-- <div class="SkillBox">
-                <h3>Time Series Analysis</h3>
-                <p>Strong foundation in Time Series Analysis, including trend analysis, seasonality detection, forecasting techniques, and temporal data modeling. Experienced in analyzing sequential data, building predictive forecasting models, identifying patterns over time, and applying statistical methods for data-driven business and analytical solutions.</p>
-                 </div> -->
-
-                                         <!-- <div class="SkillBox">
-                <h3>Time Series Analysis</h3>
-                <p>Strong foundation in Time Series Analysis, including trend analysis, seasonality detection, forecasting techniques, and temporal data modeling. Experienced in analyzing sequential data, building predictive forecasting models, identifying patterns over time, and applying statistical methods for data-driven business and analytical solutions.</p>
-                 </div> -->
-
-
-                                         <!-- <div class="SkillBox">
-                <h3>Pandas</h3>
-                <p>Strong foundation in Pandas, including data manipulation, cleaning, transformation, and exploratory data analysis. Experienced in handling structured datasets, performing data preprocessing, managing missing values, creating efficient data workflows, and extracting actionable insights for data science and analytics projects.</p>
-                 </div> -->
-
-            
-
-        </div>
-    </section>
-
-
-
-
-    <section class="ProjectPage" id="ProjectPage">
-        <h2 class="Head">Latest<span>Project</span></h2>
-
-        <div class="Project">
-            <div class="ProjectBox">
-                <img src="image/img8.png">
-                <div class="ProjectCc">
-                    <h4>Mobile Addiction Risk Predictor</h4>
-                    <p>Developed an AI-powered mobile addiction risk prediction system using machine learning to estimate daily screen time and classify addiction risk. Performed data preprocessing, exploratory analysis, model training, and deployed the solution with FastAPI, delivering personalized wellness insights through a predictive API.</p>
-                    <a href="https://github.com/Farsan-k/AI-Powered-Mobile-Addiction-Risk-Prediction-System"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-
-            <div class="ProjectBox">
-                <img src="image/img9.png">
-                <div class="ProjectCc">
-                    <h4>Cinema Audience Forecasting</h4>
-                    <p>Developed a machine learning-based cinema audience forecasting system to predict theater attendance using historical booking data and engineered time-series features. Performed data preprocessing, exploratory analysis, model training, and deployed an interactive Streamlit application for accurate, data-driven audience demand forecasting.</p>
-                    <a href="https://github.com/Farsan-k/Cinema-Audience-Forecasting" target="_blank"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-
-            <div class="ProjectBox">
-                <img src="image/img10.png">
-                <div class="ProjectCc">
-                    <h4>Market Basket Analysis</h4>
-                    <p>Developed a market basket analysis solution using association rule mining to identify frequently purchased product combinations from retail transaction data. Performed data preprocessing, exploratory analysis, and pattern discovery, enabling data-driven cross-selling strategies, product placement optimization, and improved promotional decision-making.</p>
-                    <a href="https://github.com/Farsan-k/Market_Basket_Analysis" target="_blank"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-            
-            <div class="ProjectBox">
-                <img src="image/img12.png">
-                <div class="ProjectCc">
-                    <h4>Predictive Maintenance System</h4>
-                    <p>Developed a predictive maintenance system using machine learning to detect potential machine failures from sensor data. Performed data preprocessing, exploratory analysis, feature engineering, and model development, then deployed a FastAPI application to deliver real-time maintenance predictions and improve equipment reliability.</p>
-                    <a href="https://github.com/Farsan-k/Predictive-Maintenance"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-
-
-             <div class="ProjectBox">
-                <img src="image/img11.png">
-                <div class="ProjectCc">
-                    <h4>UPI Transaction Analysis</h4>
-                    <p>Developed an interactive Power BI dashboard to analyze 250,000 UPI transactions, uncovering insights into transaction trends, regional performance, merchant activity, fraud patterns, and user behavior. Applied data modeling, DAX, and visualization techniques to support data-driven business decisions and operational improvements.</p>
-                    <a href="#"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-              <div class="ProjectBox">
-                <img src="image/img13.png">
-                <div class="ProjectCc">
-                    <h4>Job Market EDA</h4>
-                    <p>Conducted exploratory data analysis on job market data to uncover salary trends, industry demand, role-based compensation, and geographic variations. Performed data cleaning, visualization, statistical analysis, and feature exploration, generating actionable insights to support data-driven hiring, workforce planning, and career decisions.</p>
-                    <a href="#"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-
-
-              <div class="ProjectBox">
-                <img src="https://img.freepik.com/free-vector/abstract-shiny-lines-white-gray-minimal-background-design_84443-2795.jpg">
-                <div class="ProjectCc">
-                    <h4>Coming Soon</h4>
-                    <p>This project is currently under development. It will showcase practical problem-solving, modern technologies, and clean development practices. I'm continuously working to deliver a polished and impactful solution. Stay tuned for future updates and the official release.</p>
-                    <a href="#"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-
-             <div class="ProjectBox">
-                <img src="https://img.freepik.com/free-vector/abstract-shiny-lines-white-gray-minimal-background-design_84443-2795.jpg">
-                <div class="ProjectCc">
-                    <h4>Coming Soon</h4>
-                    <p>This project is currently under development. It will showcase practical problem-solving, modern technologies, and clean development practices. I'm continuously working to deliver a polished and impactful solution. Stay tuned for future updates and the official release.</p>
-                    <a href="#"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-
-
-            
-
-             <div class="ProjectBox">
-                <img src="https://img.freepik.com/free-vector/abstract-shiny-lines-white-gray-minimal-background-design_84443-2795.jpg">
-                <div class="ProjectCc">
-                    <h4>Coming Soon</h4>
-                    <p>This project is currently under development. It will showcase practical problem-solving, modern technologies, and clean development practices. I'm continuously working to deliver a polished and impactful solution. Stay tuned for future updates and the official release.</p>
-                    <a href="#"><i class='bx bx-link-alt' ></i></a>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-
-
-
-
-    <section class="ContactPage" id="ContactPage">
-        <h2 class="Head">Contact<span>Me!</span></h2>
-
-        <form action="#">
-            <div class="Input">
-               <input type="text" placeholder="Full Name" id="name">
-               <input type="email" placeholder="Email" id="email">
-            </div>
-
-
-            <div class="Input">
-               <input type="tel" placeholder="Phone Number" id="Phone">
-               <input type="text" placeholder="Email Subject" id="Subject">
-            </div>
-            <textarea name="" id="Message" cols="30" rows="10" placeholder="Leave Your Message Here"></textarea>
-            <input type="button" value="Send" class="btn" onclick="sendMail()">
-
-
-        </form>
-        
-    
-    </section>
-
-
-
-    <footer class="FooterPage">
-        <div class="FooterTxe">
-            <p>Thank You</p>
-        </div>
-
-        <div class="FooterIcon">
-            <a href="#HomePage"><i class='bx bx-up-arrow-alt' ></i></a>
-        </div>
-    </footer>
-
-    <script src="https://unpkg.com/scrollreveal"></script>
-
-    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
-
-    <script src="farsan.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
